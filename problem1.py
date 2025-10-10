@@ -21,7 +21,11 @@ def create_number_list(start, end):
     """
     # TODO: Implement this function
     # Hint: Use range() and convert to list
-    pass
+    # doable in only one line, range is going to make our list of numbers,
+    # it doesn't take the lsat value so we add 1
+    # and the function list() returns our values in a list
+
+    return list(range(start, end + 1))
 
 
 def filter_even_numbers(numbers):
@@ -40,7 +44,8 @@ def filter_even_numbers(numbers):
     """
     # TODO: Implement this function
     # You can use a loop or list comprehension
-    pass
+    # returns only the even numbers, %2 = 0 if even and != 0 if odd
+    return [num for num in numbers if num % 2 == 0]
 
 
 def square_numbers(numbers):
@@ -59,7 +64,8 @@ def square_numbers(numbers):
     """
     # TODO: Implement this function
     # Hint: Try a list comprehension!
-    pass
+    # we square with ** same logic as the function above
+    return [num**2 for num in numbers]
 
 
 def find_max_min(numbers):
@@ -78,7 +84,8 @@ def find_max_min(numbers):
     """
     # TODO: Implement this function
     # You can use max() and min() built-in functions
-    pass
+    # use of functions max() and min(), tuple as it is (x,y)
+    return (max(numbers), min(numbers))
 
 
 def remove_duplicates(items):
@@ -98,7 +105,11 @@ def remove_duplicates(items):
     # TODO: Implement this function
     # Hint: You can use a loop and check if item is already in result list
     # Or convert to set and back to list (but this doesn't preserve order)
-    pass
+    result = []
+    for item in items:
+        if item not in result:
+            result.append(item)
+    return result
 
 
 def merge_lists(list1, list2):
@@ -121,7 +132,17 @@ def merge_lists(list1, list2):
     """
     # TODO: Implement this function
     # Hint: Use a loop with index, handle different lengths
-    pass
+    # create the new merged list, using the maximum length to ensure 
+    # everything is merged, if one list is longer, it appends at the end 
+    # the function range takes the length and start it at 0 to match with index
+    merged_list = []
+    max_lenght = max(len(list1),len(list2))
+    for i in range(max_lenght):
+        if i < len(list1):
+            merged_list.append(list1[i])
+        if i < len(list2):
+            merged_list.append(list2[i])
+    return merged_list
 
 
 def list_statistics(numbers):
@@ -143,8 +164,16 @@ def list_statistics(numbers):
 
     # TODO: Implement this function
     # Calculate and return a dictionary with the statistics
-    pass
-
+    total = sum(numbers)
+    count = len(numbers)
+    stats = {
+        'sum': total,
+        'average': total/count,
+        'count': count,
+        'max': max(numbers),
+        'min': min(numbers)
+    }
+    return stats
 
 def chunk_list(items, chunk_size):
     """
@@ -163,7 +192,10 @@ def chunk_list(items, chunk_size):
     """
     # TODO: Implement this function
     # Hint: Use list slicing in a loop
-    pass
+    chunks = []
+    for i in range(0, len(items), chunk_size):
+        chunks.append(items[i:i + chunk_size])
+    return chunks
 
 
 # Test cases
